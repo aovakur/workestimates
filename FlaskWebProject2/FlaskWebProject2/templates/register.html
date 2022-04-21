@@ -1,0 +1,74 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Регистрация</h1>
+                            </div>
+                            <form class="user" action="/register" method="POST">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                            placeholder="Имя" name="name">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                            placeholder="Фамилия" name="familia">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                        placeholder="Отчество" name="otchestvo">
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                        placeholder="Телефон" name="mob">
+                                </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="Email" name="email">
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleInputPassword" placeholder="Пароль" name="password">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="password" class="form-control form-control-user"
+                                            id="exampleRepeatPassword" placeholder="Повторите ввод пароля" name="passwordrepeat">
+                                    </div>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block" type="submit">Регистрация</button>
+                                
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="{{ url_for('forgotpassword') }}">Забыли пароль?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="{{ url_for('home') }}">У вас уже есть логин?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

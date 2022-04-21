@@ -1,0 +1,108 @@
+{% extends "layout_lk.html" %}
+
+{% block content %}
+
+
+<div class="table-responsive">
+</p>Данные клиента:</p> 
+<p>Имя {{client[0][1]}} Фамилия {{client[0][2]}}</p>
+<p>Отчество {{client[0][3]}} Мобильный телефон {{client[0][4]}} Адрес {{client[0][5]}}</p>
+
+<p></p>
+
+
+ <form class="user" action="/createact" method="POST">
+
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                  <tr>
+                  <th>Вид работ</th>
+                  <th>Единицы</th>
+                  <th>Цена </th>
+                  <th>Количество</th>
+                  <th>Сумма</th>
+                  <th></th>
+                  </tr>
+                  </thead>
+
+                  <tfoot>
+                  <tr>
+                  <th>Вид работ</th>
+                  <th>Единицы</th>
+                  <th>Цена </th>
+                  <th>Количество</th>
+                  <th>Сумма</th>
+                  <th></th>
+                  </tr>
+                  </tfoot>
+
+                  <tbody>
+
+
+{%for i in range(0, element)%}
+                  {% for p in data %}
+                  <tr>
+                  <td> <input class="calc__text" type="text" id="row1_{{p[0]}}" value="{{p[1]}}" name="row1_{{p[0]}}" ></td>
+                  <td> <input type="text" id="row2_{{p[0]}}" value="{{p[2]}}" name="row2_{{p[0]}}" ></td>
+                  <td><input class="calc__number" type="text" id="row3_{{p[0]}}" value="{{p[3]}}" name="row3_{{p[0]}}" oninput="Functioncurrent('{{p[0]}}','{{p[3]}}')"></td>
+                  <td><input class="calc__number" type="text" id="row4_{{p[0]}}" name="row4_{{p[0]}}" oninput="Functioncurrent('{{p[0]}}','{{p[3]}}')"  value="{{p[5]}}"> </td> 
+                  <td><input class="calc__text" type="text" id="row5_{{p[0]}}" value="" name="row5_{{p[0]}}" readonly></td>
+                  <td><div class="rowid"><input class="calc__checkbox" type="checkbox" id="row6_{{p[0]}}" name="row6_{{p[0]}}" ></td></div>
+                  </tr>
+                  {% endfor %}
+                  
+                  
+{%endfor%} 
+
+{%for i in range(1, 21)%}
+                  <tr>
+                  <td><input class="calc__text" type="text" id="extra1_{{i}}" name="extra1_{{i}}"></td>
+                  <td><input class="calc__number" type="text" id="extra2_{{i}}" name="extra2_{{i}}"></td>
+                  <td><input class="calc__number" type="text" id="extra3_{{i}}" name="extra3_{{i}}" oninput="Functionextra('{{i}}')"></td>
+                  <td><input class="calc__number" type="text" id="extra4_{{i}}" name="extra4_{{i}}" oninput="Functionextra('{{i}}')"></td> 
+                  <td><input class="calc__text" type="text" id="extra5_{{i}}" value="" name="extra5_{{i}}" readonly></td>
+                  <td><div class="rowid"><input class="calc__checkbox" type="checkbox" id="extra6_{{i}}" name="extra6_{{i}}"></td></div>
+                  </tr>
+{% endfor %}
+                  
+                  
+
+</tbody>
+           </table>
+
+<button class="btn btn-lg btn-primary btn-block" type="submit">Сохранить</button>                  
+</form>
+
+
+ <script>
+
+function Functioncurrent(id, cast) {
+ var param = Number(document.getElementById("row4_"+id).value);
+ var cast = Number(document.getElementById("row3_"+id).value);
+ sum = document.getElementById("row5_"+id).value = Math.ceil(cast * param);
+ var chbox;
+ chbox=document.getElementById("row6_"+ id);
+ if (sum > 0) { 
+ chbox.checked= true;
+ } else {
+  chbox.checked= false;
+ }
+}
+
+
+function Functionextra(id) {
+ var param = Number(document.getElementById("extra4_"+id).value);
+ var cast = Number(document.getElementById("extra3_"+id).value);
+ sum = document.getElementById("extra5_"+id).value = Math.ceil(param*cast);
+ var chbox;
+ chbox=document.getElementById("extra6_"+ id);
+ chbox.checked= true;
+
+}
+
+</script>
+
+
+</div>
+                      
+{% endblock %}

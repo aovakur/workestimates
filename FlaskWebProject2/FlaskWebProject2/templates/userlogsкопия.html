@@ -1,0 +1,59 @@
+{% extends "layout_lk.html" %}
+
+{% block content %}
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>№</th>
+                                            <th>Пользователь</th>
+                                            <th>Действие</th>
+                                            <th>Дополнительно</th>
+                                            <th>Дата</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th>№</th>
+                                            <th>Пользователь</th>
+                                            <th>Действие</th>
+                                            <th>Дополнительно</th>
+                                            <th>Дата</th>
+                                        </tr>
+                                    </tfoot>
+
+                          {% for p in data %}
+                                    {% if session['rule'] == 1 %}
+                                     <tbody>
+                                        <tr>
+                                          <td>{{p[0]}}</td>
+                                          <td>{{p[2]}}</td>
+                                          <td>{{p[3]}}</td>
+                                          <td>{{p[4]}}</td>
+                                          <td>{{p[5]}}</td>
+                                        </tr>
+                                      </tbody>                           
+                                      {% else %}
+                                          {% if p[1] == session['id'] %}
+                                          <tbody>
+                                            <tr>
+                                              <td>{{p[0]}}</td>
+                                              <td>{{p[2]}}</td>
+                                              <td>{{p[3]}}</td>
+                                              <td>{{p[4]}}</td>
+                                              <td>{{p[5]}}</td>
+                                            </tr>
+                                          </tbody>   
+                                          {% endif %}
+                                      {% endif %}
+
+                            {% endfor %}
+                                </table>
+                            </div>
+                        
+
+{% endblock %}
+
+{% if data.has_prev %}<a href="{{ url_for('view', page=data.prev_num) }}">&lt;&lt; Newer posts</a>{% else %}&lt;&lt; Newer posts{% endif %} | 
+{% if data.has_next %}<a href="{{ url_for('view', page=data.next_num) }}">Older posts &gt;&gt;</a>{% else %}Older posts &gt;&gt;{% endif %}

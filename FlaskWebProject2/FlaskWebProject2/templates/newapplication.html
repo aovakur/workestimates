@@ -1,0 +1,39 @@
+{% extends "layout_lk.html" %}
+
+{% block content %}
+
+
+<div class="table-responsive">
+        
+  <p>{{application_new}}</p>
+
+  <form action="/newaplication" method="POST"> 
+  <div class="form-group">
+    <label for="exampleFormControlInput1"> Имя</label>
+    <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="Имя" name="name">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Фамилия</label>
+    <input type="familia" class="form-control" id="exampleFormControlInput1" placeholder="Фамилия" name="familia">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Отчество</label>
+    <input type="otchestvo" class="form-control" id="exampleFormControlInput1" placeholder="Отчество" name="otchestvo">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Телефон</label>
+    <input type="mob" class="form-control" id="exampleFormControlInput1" placeholder="0000000000000" name="mob">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Адрес</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="address"></textarea>
+  </div>
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Сохранить</button>
+</form>
+
+</div>
+                     
+
+{% endblock %}

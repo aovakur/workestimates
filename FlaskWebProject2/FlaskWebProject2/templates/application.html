@@ -1,0 +1,123 @@
+{% extends "layout_lk.html" %}
+
+{% block content %}
+<p>Выводятся последние 30 записей. В результате не больше 500 записей, для оптимизации</p>
+
+<ul class="pagination">
+  {% if data.has_prev %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('application', page_num=data.prev_num) }}">Назад</a></li>
+  {% else %}
+   <li class="page-item disabled"><span class="page-link">Назад</span>
+  {% endif %}
+   </li>
+   
+  {% for page in data.iter_pages(left_edge=3, right_edge=3) %}
+  {% if page %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('application', page_num=page) }}">{{ page }}</a></li>
+  {% else %}
+   <li class="page-item disabled" id="example_ellipsis"><a href="#" class="page-link">…</a></li> 
+  {% endif %}
+  {% endfor %}
+ 
+  {% if data.has_next %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('application', page_num=data.next_num) }}">Вперед</a></li>
+  {% else %}
+   <li class="page-item disabled"><span class="page-link">Вперед</span>
+  {% endif %}
+   </ul>    
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Порядковый номер</th>
+                                            <th>Дата</th>
+                                            <th>Имя</th>
+                                            <th>Фамилия</th>
+                                            <th>Отчество</th>
+                                            <th>Мобильный телефон</th>
+                                            <th>Адрес</th>
+                                            <th></th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Порядковый номер</th>
+                                            <th>Дата</th>
+                                            <th>Имя</th>
+                                            <th>Фамилия</th>
+                                            <th>Отчество</th>
+                                            <th>Мобильный телефон</th>
+                                            <th>Адрес</th>
+                                            <th>Создать новый акт?</th>
+                                        </tr>
+                                    </tfoot>
+
+                                    <tbody>
+                                        
+                                         {% for p in data.items %}
+                                        <tr>
+                                          <td><b>{{p.id}}</b></td>
+                                          <td><b>{{p.name}}</b></td>
+                                          <td><b>{{p.familia}}</b></td>
+                                          <td><b>{{p.otchestvo}}</b></td>
+                                          <td><b>{{p.mob}}</b></td>
+                                          <td><b>{{p.address}}</b></td>
+                                          <td><b>{{p.created_on}}</b></td>
+                                          <td>
+
+                                             <a href="/createact?id={{p.id}}&room=1">Создать акт</a>
+
+                                        </td>
+                                        </tr>
+
+                                        
+                                        <td></td>
+                                        
+                                        <td colspan="7">
+                                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            {% for d in acts.items %}
+                                            
+                                             <tr>
+                                                <td>{{d.created_on}}</td>
+                                                <td>Акт</td>
+                                                <td>{{d.sum}}</td>
+                                                <td>
+                                                    <a href="/act?id={{p[0]}}&act={{p[1]}}">Подробно</a>
+                                                </td>
+                                            
+                                            </tr>
+                                            {% endfor %}
+                                            
+                                            </table>
+                                        </td>
+                                    
+
+                                        {% endfor %}
+
+                                    </tbody>
+                                </table>
+
+ <ul class="pagination">
+  {% if data.has_prev %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('application', page_num=data.prev_num) }}">Назад</a></li>
+  {% else %}
+   <li class="page-item disabled"><span class="page-link">Назад</span>
+  {% endif %}
+   </li>
+   
+  {% for page in data.iter_pages(left_edge=3, right_edge=3) %}
+  {% if page %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('application', page_num=page) }}">{{ page }}</a></li>
+  {% else %}
+   <li class="page-item disabled" id="example_ellipsis"><a href="#" class="page-link">…</a></li> 
+  {% endif %}
+  {% endfor %}
+ 
+  {% if data.has_next %}
+   <li class="page-item"><a class="page-link" href="{{ url_for('application', page_num=data.next_num) }}">Вперед</a></li>
+  {% else %}
+   <li class="page-item disabled"><span class="page-link">Вперед</span>
+  {% endif %}
+   </ul>                  
+
+{% endblock %}

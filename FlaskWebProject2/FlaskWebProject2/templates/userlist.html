@@ -1,0 +1,76 @@
+{% extends "layout_lk.html" %}
+
+{% block content %}
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>№</th>
+                                            <th>Имя</th>
+                                            <th>Фамилия</th>
+                                            <th>Отчество</th>
+                                            <th>Мобильный телефон</th>
+                                            <th>Email</th>
+                                            <th>Доступ</th>
+                                            <th>Подтвержден</th>
+                                            <th>Когда зарегистрирован</th>
+                                            <th>Редактировать</th>
+                                            <th>Заблокирован</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tfoot>
+                                        <tr>
+                                            <th>№</th>
+                                            <th>Имя</th>
+                                            <th>Фамилия</th>
+                                            <th>Отчество</th>
+                                            <th>Мобильный телефон</th>
+                                            <th>Email</th>
+                                            <th>Доступ</th>
+                                            <th>Подтвержден</th>
+                                            <th>Когда зарегистрирован</th>
+                                            <th>Редактировать</th>
+                                            <th>Заблокирован</th>
+                                        </tr>
+                                    </tfoot>
+
+
+
+{% for p in data %}
+<tbody>
+    <tr>
+      <td>{{p[0]}}</td>
+      <td>{{p[1]}}</td>
+      <td>{{p[2]}}</td>
+      <td>{{p[3]}}</td>
+      <td>{{p[4]}}</td>
+      <td>{{p[5]}}</td>
+
+      {% if p[8] == 1 %}
+        <td>Администратор системы</td>
+      {% endif %}
+      {% if p[8] == 5 %}
+        <td>Гость</td>
+      {% endif %}
+
+
+      {% if p[7] == 1 %}
+        <td>Подтвержден</td>
+      {% endif %}
+      {% if p[7] == 0 %}
+        <td><a href="/userlist?approve={{p[0]}}">Подтвердить</a></td>
+      {% endif %}
+      <td>{{p[10]}}</td>
+        <td><a href="/userlist?edit={{p[0]}}">Редактировать</a></td>
+      <td><a href="/userlist?block={{p[0]}}">Заблокировать</a></td>
+    </tr>
+  </tbody>
+
+{% endfor %}
+
+                                </table>
+                            </div>
+                        
+
+{% endblock %}

@@ -1,0 +1,38 @@
+/*!
+ * Дополнительные стили
+ */
+
+.calc__number{
+  width: 60px;
+  height: 42px;
+  background-color: #E9EDF3;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.calc__text{
+  width: 320px;
+  height: 42px;
+  background-color: #E9EDF3;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.calc__checkbox{
+  border-radius: 2px;
+  height: 18px;
+  width: 18px;
+  border: 1px solid #A1A3A8;
+}
+
+.calc__checkbox:checked{
+  background-color: #004298;
+  border: 1px solid #004298;
+}
+
+.rowid
+{
+  padding-top:5px;
+}
